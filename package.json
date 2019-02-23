@@ -1,0 +1,26 @@
+{
+  "name": "task_project",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": "10.x",
+    "yarn": "1.x"
+  },
+  "scripts": {
+    "install": "yarn install:be && yarn install:fe",
+    "install:be": "cd backend && yarn",
+    "install:fe": "cd frontend && yarn",
+    "build": "cd frontend && yarn build && cd .. && cd backend && yarn build",
+    "start": "concurrently \"yarn start:backend\" \"yarn start:frontend\"",
+    "start:backend": "cd backend && yarn start",
+    "start:frontend": "cd frontend && yarn start",
+    "test": "cd frontend && yarn test && cd .. && cd backend && yarn test",
+    "dev": "concurrently \"cd backend && yarn dev\" \"cd frontend && yarn start\"",
+    "serve": "cd backend && node build/src/server.js",
+    "heroku-postbuild": "cd backend tsc"
+  },
+  "devDependencies": {
+    "@types/supertest": "^2.0.7",
+    "concurrently": "^4.1.0"
+  }
+}
